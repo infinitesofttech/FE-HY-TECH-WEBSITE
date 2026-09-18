@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-light: var(--primary-light);
+  --color-primary-color: var(--primary-color);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent-color: var(--accent-color);
+  
+  --color-text-color: var(--text-color);
+  --color-background-color: var(--background-color);
+  --color-card-background: var(--card-background);
+  --color-border-color: var(--border-color);
+}
+
+@layer base {
+  :root {
+    /* Base Light Mode Colors */
+    --background-color: #ffffff;
+    --card-background: #f9fafb;
+    --text-color: #1E1B2E;
+    --border-color: #e5e7eb;
+
+    /* Default Theme: Purple */
+    --primary-light: #ede9fe;
+    --primary-color: #8B5CF6;
+    --primary-hover: #7C3AED;
+    --accent-color: #6d28d9;
+  }
+
+  .dark, [data-theme="dark"] {
+    /* Base Dark Mode Colors */
+    --background-color: #0f172a;
+    --card-background: #1e293b;
+    --text-color: #f8fafc;
+    --border-color: #334155;
+  }
+
+  .theme-blue {
+    --primary-light: #dbeafe; --primary-color: #3B82F6; --primary-hover: #2563eb; --accent-color: #1d4ed8;
+  }
+  .theme-indigo {
+    --primary-light: #e0e7ff; --primary-color: #6366F1; --primary-hover: #4f46e5; --accent-color: #4338ca;
+  }
+  .theme-purple {
+    --primary-light: #ede9fe; --primary-color: #8B5CF6; --primary-hover: #7C3AED; --accent-color: #6d28d9;
+  }
+  .theme-pink {
+    --primary-light: #fce7f3; --primary-color: #EC4899; --primary-hover: #db2777; --accent-color: #be185d;
+  }
+  .theme-red {
+    --primary-light: #fee2e2; --primary-color: #EF4444; --primary-hover: #dc2626; --accent-color: #b91c1c;
+  }
+  .theme-orange {
+    --primary-light: #ffedd5; --primary-color: #F97316; --primary-hover: #ea580c; --accent-color: #c2410c;
+  }
+  .theme-amber {
+    --primary-light: #fef3c7; --primary-color: #F59E0B; --primary-hover: #d97706; --accent-color: #b45309;
+  }
+  .theme-green {
+    --primary-light: #d1fae5; --primary-color: #10B981; --primary-hover: #059669; --accent-color: #047857;
+  }
+  .theme-teal {
+    --primary-light: #ccfbf1; --primary-color: #14B8A6; --primary-hover: #0d9488; --accent-color: #0f766e;
+  }
+  .theme-cyan {
+    --primary-light: #cffafe; --primary-color: #06B6D4; --primary-hover: #0891b2; --accent-color: #0e7490;
+  }
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #ffffff;
+    color: #6B7280;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #1E1B2E;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
