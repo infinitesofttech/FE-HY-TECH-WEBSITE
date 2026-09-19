@@ -11,10 +11,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ScrollToTop from './components/ScrollToTop';
 import ProtectedRoute from './components/ProtectedRoute';
+import Preloader from './components/Preloader';
 
 function AppContent() {
   return (
     <div className="flex flex-col min-h-screen bg-[var(--bg-base)] text-[var(--text-main)] transition-colors duration-300">
+      <Preloader />
       <Navbar />
       <main className="flex-grow">
         <Routes>

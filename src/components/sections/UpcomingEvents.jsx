@@ -1,80 +1,110 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Clock, ArrowRight, GraduationCap } from 'lucide-react';
-import { events } from '../../data/events';
+import { GraduationCap, MapPin, Clock, ArrowUpRight } from 'lucide-react';
+
+const events = [
+  {
+    id: 1,
+    tag: "Design",
+    title: "Design better digital products for creative problem solving.",
+    description: "Master modern digital & tech skills through powered learning paths and structured.",
+    location: "Miami, Florida, USA",
+    time: "10:00am - 12:00am",
+    month: "November",
+    day: "02",
+    image: "/images/events/event_speaker.jpg"
+  },
+  {
+    id: 2,
+    tag: "Design",
+    title: "Prepare for tomorrow's careers on future learning sessions.",
+    description: "Master modern digital & tech skills through powered learning paths and structured.",
+    location: "Miami, Florida, USA",
+    time: "10:00am - 12:00am",
+    month: "November",
+    day: "08",
+    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800"
+  }
+];
 
 export default function UpcomingEvents() {
   return (
-    <section className="w-full py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%)' }}>
-      {/* Noise Texture */}
-      <div className="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
-           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
-      </div>
+    <section className="bg-[#F96400] py-24 relative overflow-hidden">
+      {/* Optional Noise Background Overlay */}
+      <div 
+        className="absolute inset-0 opacity-10 pointer-events-none" 
+        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
+      ></div>
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold mb-5"
-            style={{ background: 'rgba(255,255,255,0.15)', color: '#fff' }}>
-            <GraduationCap size={14} className="mr-1 inline" /> LIVE & UPCOMING
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white">
-            Upcoming Events<br />For Families.
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        
+        {/* Header Section */}
+        <div className="flex flex-col items-center text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-[#F96400] font-bold text-sm mb-6 shadow-sm">
+            <GraduationCap className="w-4 h-4" />
+            <span className="tracking-wide">LIVE & UPCOMING</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight max-w-2xl">
+            Upcoming Events For<br/>Career Growth.
           </h2>
         </div>
 
-        {/* Event Cards */}
-        <div className="flex flex-col gap-8 w-full mx-auto">
-          {events.map((ev, i) => (
-            <motion.div
-              key={ev.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="rounded-2xl p-0 overflow-hidden flex flex-col md:flex-row"
-              style={{ background: '#F7F5FC', boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}
+        {/* Events List */}
+        <div className="max-w-5xl mx-auto flex flex-col gap-6">
+          {events.map((event) => (
+            <div 
+              key={event.id}
+              className="bg-white rounded-3xl p-4 flex flex-col md:flex-row items-center gap-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 group relative z-20"
             >
-              {/* Event Emoji/Image Block */}
-              <div className="flex-shrink-0 w-full md:w-[280px] h-48 md:h-auto flex items-center justify-center text-8xl"
-                style={{ background: 'linear-gradient(135deg, #F1E1F2, #FDF1E4)' }}>
-                {ev.emoji}
+              {/* Left Image */}
+              <div className="w-full md:w-[280px] h-56 rounded-2xl overflow-hidden shrink-0 relative">
+                <img 
+                  src={event.image} 
+                  alt={event.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
 
-              {/* Body */}
-              <div className="flex-1 p-12 md:py-20 md:px-12 flex flex-col md:flex-row items-start md:items-center gap-8">
-                <div className="flex-1">
-                  <span className="inline-block px-4 py-2 rounded-full text-sm font-bold mb-5"
-                    style={{ background: '#FDEDE3', color: '#7C3AED' }}>
-                    {ev.tag}
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-extrabold mb-5" style={{ color: '#1E1B2E' }}>{ev.title}</h3>
-                  <p className="text-lg md:text-xl mb-8 leading-relaxed" style={{ color: '#6B7280' }}>{ev.description}</p>
-                  <div className="flex flex-wrap gap-6 text-sm" style={{ color: '#9CA3AF' }}>
-                    <span className="flex items-center gap-2"><MapPin size={14} /> {ev.location}</span>
-                    <span className="flex items-center gap-2"><Clock size={14} /> {ev.time}</span>
+              {/* Center Content */}
+              <div className="flex-1 py-4 px-2 md:px-0">
+                <span className="inline-block px-3 py-1 rounded-full bg-orange-50 text-[#F96400] text-xs font-bold mb-4">
+                  {event.tag}
+                </span>
+                <h3 className="text-[1.7rem] font-bold text-[#1a202c] mb-3 leading-snug group-hover:text-[#F96400] transition-colors cursor-pointer">
+                  {event.title}
+                </h3>
+                <p className="text-gray-500 mb-6 leading-relaxed max-w-lg text-[15px]">
+                  {event.description}
+                </p>
+                
+                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400 font-medium">
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4" />
+                    <span>{event.location}</span>
                   </div>
-                </div>
-
-                {/* Date + Button */}
-                <div className="flex-shrink-0 flex flex-col items-end gap-6">
-                  <div className="text-right">
-                    <p className="text-sm font-semibold mb-1" style={{ color: '#9CA3AF' }}>{ev.month}</p>
-                    <p className="text-6xl font-black leading-none tracking-tight" style={{ color: '#1E1B2E' }}>{ev.day}</p>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4" />
+                    <span>{event.time}</span>
                   </div>
-                  <button
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white"
-                    style={{ background: '#7C3AED' }}
-                    onMouseEnter={e => e.currentTarget.style.background = '#6D28D9'}
-                    onMouseLeave={e => e.currentTarget.style.background = '#7C3AED'}
-                  >
-                    Book Seat Now <ArrowRight size={14} />
-                  </button>
                 </div>
               </div>
-            </motion.div>
+
+              {/* Right Content / CTA */}
+              <div className="w-full md:w-56 md:border-l border-gray-100 flex flex-row md:flex-col items-center justify-between md:justify-center p-4 md:py-8 shrink-0 h-full">
+                <div className="text-center mb-0 md:mb-8">
+                  <span className="block text-gray-500 font-medium text-sm mb-1">{event.month}</span>
+                  <span className="block text-6xl font-extrabold text-[#2a3040] tracking-tighter">{event.day}</span>
+                </div>
+                
+                <button className="bg-[#F96400] hover:bg-[#e05a00] text-white px-6 py-3 rounded-full font-bold text-sm transition-colors flex items-center gap-2 shadow-md hover:shadow-lg w-full md:w-auto justify-center">
+                  Book seat now
+                  <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                </button>
+              </div>
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   );

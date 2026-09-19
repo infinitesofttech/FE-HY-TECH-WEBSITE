@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Monitor, GraduationCap, Briefcase, Printer, Laptop, Globe, FolderCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { categories } from '../../data/services';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const IconMap = {
   Monitor: Monitor,
@@ -39,12 +43,30 @@ export default function BrowseCategories() {
           </Link>
         </div>
 
-        {/* 6-Category Grid (Image Cards) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 6-Category Premium Swiper Slider */}
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={24}
+          slidesPerView={1}
+          speed={800}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="pt-4 px-4 -mx-4 !pb-16"
+          style={{
+            '--swiper-pagination-color': '#F96400',
+            '--swiper-pagination-bullet-inactive-color': '#999999',
+            '--swiper-pagination-bottom': '10px',
+          }}
+        >
           {categories.map((cat, i) => {
             const Icon = IconMap[cat.icon] || Monitor;
             return (
-              <motion.div
+              <SwiperSlide key={cat.id} style={{ height: 'auto' }}>
+                <motion.div
                 key={cat.id}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +81,7 @@ export default function BrowseCategories() {
                     <img 
                       src={cat.catImage} 
                       alt={cat.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
                   </div>
@@ -79,29 +101,42 @@ export default function BrowseCategories() {
 
                 {/* Card Content */}
                 <div className="p-6 pt-9 flex flex-col flex-grow">
-                  <h3 className="font-extrabold text-[#171717] text-lg leading-tight mb-2 group-hover:text-[#F96400] transition-colors">
+                  <h3 className="font-extrabold text-[#171717] text-lg leading-tight mb-3 group-hover:text-[#F96400] transition-colors">
                     {cat.title}
                   </h3>
                   
-                  <p className="text-xs md:text-sm text-gray-500 line-clamp-2 leading-relaxed mb-6 flex-grow">
-                    {cat.subtitle}
-                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-6 flex-grow items-start content-start">
+                    {cat.subtitle.split(', ').map((item, idx) => (
+                      <span 
+                        key={idx} 
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 hover:bg-[#FFF5EE] hover:text-[#F96400] text-gray-600 border border-gray-200 hover:border-[#F96400]/30 text-[11px] font-medium rounded-md transition-colors"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-[#F96400]/70"></span>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
 
                   {/* Footer Link */}
-                  <div className="pt-4 border-t border-gray-100 mt-auto">
+                  <div className="mt-auto pt-3">
                     <Link
                       to={`/services/${cat.slug}`}
-                      className="text-[11px] font-black text-[#171717] flex items-center justify-between group-hover:text-[#F96400] transition-colors"
+                      className="group/btn w-full flex items-center justify-between px-4 py-3 rounded-xl bg-gray-50 hover:bg-[#FFF5EE] border border-gray-100 hover:border-[#F96400]/40 transition-all duration-300"
                     >
-                      <span>Explore Services</span>
-                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                      <span className="text-[12px] font-bold text-[#171717] group-hover/btn:text-[#F96400] transition-colors">
+                        Explore {cat.title}
+                      </span>
+                      <div className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center group-hover/btn:bg-[#F96400] group-hover/btn:text-white text-gray-500 transition-all duration-300 border border-gray-100 group-hover/btn:border-[#F96400]">
+                        <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-0.5" />
+                      </div>
                     </Link>
                   </div>
                 </div>
               </motion.div>
+              </SwiperSlide>
             );
           })}
-        </div>
+        </Swiper>
 
       </div>
     </section>

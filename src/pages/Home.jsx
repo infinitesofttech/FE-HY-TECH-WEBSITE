@@ -10,6 +10,9 @@ import FAQ from '../components/sections/FAQ';
 import FinalCTA from '../components/sections/FinalCTA';
 import ServicesMarquee from '../components/sections/ServicesMarquee';
 import HeroSlider from '../components/sections/HeroSlider';
+import StatsCounter from '../components/sections/StatsCounter';
+import Testimonials from '../components/sections/Testimonials';
+import UpcomingEvents from '../components/sections/UpcomingEvents';
 
 export default function Home() {
   return (
@@ -22,19 +25,28 @@ export default function Home() {
       <TrustLogos />
 
       {/* ══════════════ SERVICES RUNNING TICKER ══════════════ */}
-      <ServicesMarquee />
+      {/* <ServicesMarquee /> */}
 
       {/* ══════════════ 6 SPECIALIZED CATEGORIES ══════════════ */}
       <BrowseCategories />
 
       {/* ══════════════ FEATURED DAILY SERVICES (DOCS & WHATSAPP) ══════════════ */}
-      <ExploreServices />
+      {/* <ExploreServices /> */}
 
       {/* ══════════════ HOW IT WORKS (3 STEPS) ══════════════ */}
       <HowItWorks />
 
+      {/* ══════════════ STATS COUNTER (NEW) ══════════════ */}
+      <StatsCounter />
+
       {/* ══════════════ ABOUT THE DHARAMPUR CENTER & LAB ══════════════ */}
       <AboutPlatform />
+
+      {/* ══════════════ UPCOMING EVENTS (NEW) ══════════════ */}
+      <UpcomingEvents />
+
+      {/* ══════════════ TESTIMONIALS (NEW) ══════════════ */}
+      <Testimonials />
 
       {/* ══════════════ CITIZEN FREQUENTLY ASKED QUESTIONS ══════════════ */}
       <FAQ />

@@ -1,94 +1,133 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, GraduationCap, User } from 'lucide-react';
-import { testimonials } from '../../data/testimonials';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Quote, Star, GraduationCap, ArrowLeft, ArrowRight } from 'lucide-react';
+
+const testimonials = [
+  {
+    id: 1,
+    bgColor: 'bg-[#fdf2f8]', // pink-50
+    text: "The platform transformed complex analytics into simple actions, helping our team make faster, smarter decisions with deep technical expertise daily.",
+    name: "Brooklyn Simmons",
+    designation: "Co. Founder",
+    avatar: "https://i.pravatar.cc/150?u=1"
+  },
+  {
+    id: 2,
+    bgColor: 'bg-[#e0f2fe]', // sky-100
+    text: "Our team reduced manual reporting time drastically and now focuses on strategy instead of repetitive data tasks thanks to the AI insights.",
+    name: "Cody Fisher",
+    designation: "Co. Founder",
+    avatar: "https://i.pravatar.cc/150?u=2"
+  },
+  {
+    id: 3,
+    bgColor: 'bg-[#dcfce7]', // green-100
+    text: "We improved marketing performance significantly using AI-driven recommendations that optimize campaigns for consistent results.",
+    name: "Jenny Wilson",
+    designation: "Co. Founder",
+    avatar: "https://i.pravatar.cc/150?u=3"
+  },
+  {
+    id: 4,
+    bgColor: 'bg-[#f3e8ff]', // purple-100
+    text: "The facilitation services are top-notch. They handled all our complex documentation requirements seamlessly and securely.",
+    name: "Bessie Cooper",
+    designation: "Co. Founder",
+    avatar: "https://i.pravatar.cc/150?u=4"
+  }
+];
 
 export default function Testimonials() {
-  const [start, setStart] = useState(0);
-
-  const displayTestimonials = [...testimonials, ...testimonials.slice(0, 3)];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStart((s) => (s >= testimonials.length - 1 ? 0 : s + 1));
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [start]);
-
-  const prev = () => setStart((s) => (s <= 0 ? testimonials.length - 1 : s - 1));
-  const next = () => setStart((s) => (s >= testimonials.length - 1 ? 0 : s + 1));
-
   return (
-    <section className="w-full py-20 bg-white overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold mb-4"
-              style={{ background: '#FDEDE3', color: '#7C3AED' }}>
-              <GraduationCap size={14} className="mr-1 inline" /> FAMILY FEEDBACK
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight" style={{ color: '#1E1B2E' }}>
-              Explore our families'<br />feedback.
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4 lg:px-8">
+        
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-12">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 text-orange-600 font-semibold text-sm mb-4">
+              <GraduationCap className="w-4 h-4" />
+              <span className="tracking-wide">STUDENTS FEEDBACK</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1a202c] leading-tight tracking-tight">
+              Explore our students<br/>users feedback.
             </h2>
           </div>
-          <div className="flex gap-3 mt-6 md:mt-0">
-            <button onClick={prev}
-              className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-50 transition-colors"
-              style={{ borderColor: '#E5E7EB' }}>
-              <ChevronLeft size={18} />
+          
+          {/* Custom Navigation */}
+          <div className="hidden lg:flex gap-4 mt-6 lg:mt-0 pb-2">
+            <button className="testimonial-prev w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-orange-500 hover:text-orange-500 transition-colors cursor-pointer">
+              <ArrowLeft className="w-5 h-5" />
             </button>
-            <button onClick={next}
-              className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-50 transition-colors"
-              style={{ borderColor: '#E5E7EB' }}>
-              <ChevronRight size={18} />
+            <button className="testimonial-next w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-orange-500 hover:text-orange-500 transition-colors cursor-pointer">
+              <ArrowRight className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Cards */}
-        <div className="flex overflow-hidden -mx-3 py-4">
-          {displayTestimonials.map((t, i) => (
-            <motion.div
-              key={`${t.id}-${i}`}
-              animate={{ x: `-${start * 100}%` }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-              className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-3"
-            >
-              <div 
-                className="rounded-3xl p-8 flex flex-col h-full cursor-pointer transition-all border border-white/50 shadow-sm relative overflow-hidden group hover:-translate-y-1"
-                style={{ background: t.bg, boxShadow: '0 2px 12px rgba(0,0,0,0.05)' }}
-                onMouseEnter={e => e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08)'}
-                onMouseLeave={e => e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.05)'}
-              >
-                {/* Decorative corner glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/40 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none group-hover:scale-110 transition-transform duration-500"></div>
-                
-                {/* Quote mark */}
-                <div className="w-16 h-16 rounded-2xl bg-white/80 backdrop-blur-md flex items-center justify-center mb-6 shadow-sm flex-shrink-0 relative z-10">
-                  <span className="font-serif font-black text-4xl leading-none mt-4" style={{ color: '#7C3AED' }}>"</span>
-                </div>
-                {/* Stars */}
-                <div className="flex gap-1 mb-4 relative z-10">
-                  {Array(5).fill(0).map((_, i) => (
-                    <Star key={i} size={16} fill="#F97316" stroke="none" />
-                  ))}
-                </div>
-                {/* Quote */}
-                <p className="text-sm font-medium leading-relaxed mb-8 flex-1 relative z-10" style={{ color: '#1E1B2E' }}>{t.quote}</p>
-                {/* Reviewer */}
-                <div className="flex items-center gap-4 pt-5 border-t relative z-10" style={{ borderColor: 'rgba(0,0,0,0.05)' }}>
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-sm bg-white/80 backdrop-blur-md flex-shrink-0">
-                    <User size={20} style={{ color: '#7C3AED' }} />
+        {/* Slider Section */}
+        <div className="relative">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation={{
+              prevEl: '.testimonial-prev',
+              nextEl: '.testimonial-next',
+            }}
+            pagination={{ 
+              clickable: true,
+              bulletActiveClass: 'swiper-pagination-bullet-active !bg-[#F96400]',
+              bulletClass: 'swiper-pagination-bullet !w-2 !h-2 !bg-gray-300'
+            }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            className="!pb-16"
+          >
+            {testimonials.map((item) => (
+              <SwiperSlide key={item.id} className="h-auto">
+                <div className={`h-full p-8 rounded-2xl ${item.bgColor} flex flex-col border border-black/5`}>
+                  {/* Quote Icon */}
+                  <div className="w-12 h-12 rounded-full bg-[#F96400] flex items-center justify-center mb-6 shadow-md">
+                    <Quote className="w-6 h-6 text-white fill-current" />
                   </div>
-                  <div>
-                    <p className="font-bold text-sm" style={{ color: '#1E1B2E' }}>{t.name}</p>
-                    <p className="text-xs font-medium" style={{ color: '#6B7280' }}>{t.location}</p>
+                  
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-6">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-5 h-5 text-[#F96400] fill-current" />
+                    ))}
+                  </div>
+                  
+                  {/* Text */}
+                  <p className="text-gray-700 text-lg mb-8 flex-grow leading-relaxed">
+                    "{item.text}"
+                  </p>
+                  
+                  {/* Author */}
+                  <div className="flex items-center gap-4 mt-auto">
+                    <img 
+                      src={item.avatar} 
+                      alt={item.name} 
+                      className="w-14 h-14 rounded-full object-cover shadow-sm border-2 border-white"
+                    />
+                    <div>
+                      <h4 className="font-bold text-[#1a202c] text-lg">{item.name}</h4>
+                      <p className="text-gray-500 text-sm font-medium">{item.designation}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>

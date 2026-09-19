@@ -33,6 +33,36 @@ const slides = [
     primaryBtn: 'Get Admission Help',
     primaryLink: '/services',
     secondaryBtn: 'Chat on WhatsApp',
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=2000',
+    tag: 'Govt. Job Forms',
+    title: 'Launch Your Government Career',
+    subtitle: 'Error-free online application submissions for Police, Talati, Railway, SSC, and GPSC exams.',
+    primaryBtn: 'Apply Now',
+    primaryLink: '/services',
+    secondaryBtn: 'Inquire on WhatsApp',
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=2000',
+    tag: 'Printing Center',
+    title: 'Premium Printing & Documentation',
+    subtitle: 'High-speed color printing, PVC smart cards, lamination, and instant passport photos under one roof.',
+    primaryBtn: 'View Pricing',
+    primaryLink: '/services',
+    secondaryBtn: 'Contact Us',
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=2000',
+    tag: 'Utility Desk',
+    title: 'Easy Utility Payments & Tickets',
+    subtitle: 'Hassle-free electricity bills, train/bus bookings, and instant money transfers with our secure desk.',
+    primaryBtn: 'Pay Bills',
+    primaryLink: '/services',
+    secondaryBtn: 'Chat on WhatsApp',
   }
 ];
 
