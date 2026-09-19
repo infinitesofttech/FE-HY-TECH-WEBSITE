@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 
 const faqs = [
   {
-    question: "What exactly is the HY-Tech Online Hub?",
-    answer: "HY-Tech Online Hub is a centralized digital platform designed to help families and individuals easily access, apply for, and track essential government services (like PAN, Aadhaar, Passport) and educational forms all in one place."
+    question: "What documents do I need for an Aadhaar mobile link or address update?",
+    answer: "For mobile number linking, no document is needed — only your physical presence for biometric verification and your mobile phone to receive the OTP. For address update, you need valid proof of address (such as Ration card, Voter ID, Bank passbook, or Electricity bill) and your Aadhaar-registered mobile number."
   },
   {
-    question: "Do I need an appointment for Aadhaar updates?",
-    answer: "No, for our special camps, walk-ins are generally welcome! However, for regular center visits, booking an appointment through our platform guarantees zero waiting time and a much faster process."
+    question: "How long does a new PAN card or correction take?",
+    answer: "A digital e-PAN is typically generated within 2 to 3 working days and sent to your email. The physical laminated PAN card is delivered by India Post directly to your residential address within 7 to 10 working days."
   },
   {
-    question: "Are my family's documents secure?",
-    answer: "Absolutely. We use industry-standard encryption and strict privacy policies to ensure that your sensitive documents and identity details are kept highly secure and are never shared without your explicit consent."
+    question: "Do you help with GCAS registration and Shree Vanraj College admissions?",
+    answer: "Yes, absolutely. We assist students from Dharampur and surrounding areas through the entire GCAS (Gujarat Common Admission Services) process, choice filling, document upload, fee payment, and scholarship applications (Digital Gujarat)."
   },
   {
-    question: "How does the Reward Wallet work?",
-    answer: "Every time you successfully complete an application or refer a friend through the Hub, you earn points in your Reward Wallet. These points can be redeemed for discounts on future services like printouts, form fees, and premium consultations."
+    question: "Are your computer courses (CCC, Tally, Typing) certified for government jobs?",
+    answer: "Yes! Our Course on Computer Concepts (CCC) course covers the official syllabus required for Gujarat state government recruitment examinations. We also provide practical Tally Prime with GST accounting and daily Gujarati/English typing practice."
   },
   {
-    question: "Can you help with college admissions?",
-    answer: "Yes! We provide end-to-end guidance for college admissions, scholarship form filling, and compiling the necessary document checklists to ensure students have a stress-free admission process."
+    question: "Can I send documents online via WhatsApp, or do I have to visit in person?",
+    answer: "For services that do not require live biometric capture (such as PAN card application, scholarship forms, GCAS registration, xerox, ticket bookings), you can send clear photos/PDFs directly on our WhatsApp (+91 72260 30701). For Aadhaar biometric updates, visiting our center at Rajmilan Complex is required."
+  },
+  {
+    question: "Where is the HY-Tech center located and what are the timings?",
+    answer: "We are located at Shop No. 05, 1st Floor, Rajmilan Complex, Old Jakatnaka, Dharampur, Gujarat - 396050. We are open Monday through Saturday from 9:00 AM to 7:00 PM. We remain closed on Sundays."
   }
 ];
 
@@ -29,70 +33,84 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="w-full py-24 bg-[var(--bg-base)] text-[var(--text-main)] transition-colors duration-300">
+    <section className="w-full py-20 bg-white">
       <div className="max-w-[1000px] mx-auto px-4 md:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold mb-5"
-            style={{ background: 'rgba(124, 58, 237, 0.1)', color: 'var(--theme-600)' }}>
-            <HelpCircle size={14} className="mr-1 inline" /> GOT QUESTIONS?
+
+        {/* Section Header */}
+        <div className="text-center mb-14">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 bg-[#FFF5EE] text-[#F96400]">
+            <HelpCircle size={13} /> Common Queries
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-            Frequently Asked Questions
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#000000] tracking-tight mb-3">
+            Frequently Asked Questions.
           </h2>
-          <p className="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto leading-relaxed">
-            Everything you need to know about our services, how we handle your documents, and how we can simplify your life.
+          <p className="text-sm md:text-base text-gray-600 max-w-xl mx-auto">
+            Clear, honest answers about document requirements, processing times, and how we assist you.
           </p>
         </div>
 
-        {/* FAQ Accordion */}
-        <div className="space-y-4">
+        {/* FAQ Accordion List */}
+        <div className="space-y-3.5">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <motion.div 
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'border-[var(--theme-500)] shadow-md' : 'border-[var(--border-subtle)] hover:border-gray-300 dark:hover:border-gray-600'}`}
-                style={{ background: 'var(--bg-card)' }}
+                className={`border rounded-2xl overflow-hidden transition-all duration-200 ${
+                  isOpen ? 'border-[#F96400] bg-[#FFF5EE]/20 shadow-sm' : 'border-gray-200 bg-white hover:border-gray-300'
+                }`}
               >
                 <button
-                  className="w-full px-6 py-5 md:p-8 flex items-center justify-between gap-6 text-left focus:outline-none"
+                  className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left focus:outline-none"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  aria-expanded={isOpen}
                 >
-                  <h3 className={`text-lg md:text-xl font-bold transition-colors ${isOpen ? 'text-[var(--theme-600)]' : 'text-[var(--text-main)]'}`}>
+                  <h3 className={`text-base md:text-lg font-bold transition-colors ${isOpen ? 'text-[#F96400]' : 'text-[#171717]'}`}>
                     {faq.question}
                   </h3>
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[var(--theme-500)] text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-500'}`}>
-                    <ChevronDown size={20} />
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
+                    isOpen ? 'rotate-180 bg-[#F96400] text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    <ChevronDown size={16} />
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0">
-                        <div className="h-px w-full bg-[var(--border-subtle)] mb-6"></div>
-                        <p className="text-[var(--text-muted)] text-base md:text-lg leading-relaxed">
-                          {faq.answer}
-                        </p>
+                      <div className="px-6 pb-6 pt-1 text-sm text-gray-600 leading-relaxed border-t border-orange-100/60 mt-1">
+                        {faq.answer}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
         </div>
+
+        {/* Still Have Questions Box */}
+        <div className="mt-10 p-6 rounded-2xl bg-[#FAFAFA] border border-gray-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-left">
+            <p className="text-sm font-bold text-[#000000]">Still have a specific question about your documents?</p>
+            <p className="text-xs text-gray-500">Our Dharampur staff is ready to help you directly.</p>
+          </div>
+          <a
+            href="https://wa.me/917226030701?text=Hello%20HY-Tech,%20I%20have%20a%20question%20regarding%20documents."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F96400] hover:bg-[#E05A00] text-white text-xs font-bold transition-colors shadow-sm flex-shrink-0"
+          >
+            <MessageCircle size={15} />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+
       </div>
     </section>
   );

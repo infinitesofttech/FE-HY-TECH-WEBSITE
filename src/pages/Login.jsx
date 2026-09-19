@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { ArrowRight, Lock, User } from 'lucide-react';
+import { ArrowRight, Lock, User, ShieldCheck } from 'lucide-react';
 
 export default function Login() {
   const { login, isLoggedIn } = useAuth();
@@ -22,7 +22,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     if (!id || !password) {
       setError('Please enter both Login ID and Password.');
       return;
@@ -40,38 +40,37 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center py-20 px-4 relative overflow-hidden bg-[#FDF8F3]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      {/* Decorative Glows */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-purple-300/30 blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-orange-200/40 blur-[120px] pointer-events-none"></div>
-
-      <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 p-8 relative z-10">
+    <div className="min-h-screen w-full flex items-center justify-center py-16 px-4 bg-[#FAFAFA]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <div className="max-w-md w-full bg-white rounded-3xl shadow-sm border border-gray-200 p-8 relative z-10">
         <div className="text-center mb-8">
-          <Link to="/" className="inline-block mb-6">
-            <img src="/hy-tech-logo.png" alt="HY-Tech Online Hub" className="h-10 w-auto" />
+          <Link to="/" className="inline-block mb-4">
+            <img src="/hy-tech-logo.png" alt="HY-Tech Online Hub" className="h-12 w-auto mx-auto object-contain" />
           </Link>
-          <h2 className="text-2xl font-extrabold text-[#1E1B2E]">Welcome Back</h2>
-          <p className="text-sm text-gray-500 mt-2">Log in to manage your family services.</p>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#FFF5EE] text-[#F96400] mb-3">
+            <ShieldCheck size={13} /> Client Portal
+          </span>
+          <h2 className="text-2xl font-black text-[#000000]">Welcome Back</h2>
+          <p className="text-xs text-gray-500 mt-1">Log in to track your document applications.</p>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm font-medium border border-red-100">
+          <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-xs font-medium border border-red-100">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-bold text-[#1E1B2E] mb-2" htmlFor="loginId">
-              Login ID / Mobile Number
+            <label className="block text-xs font-bold text-[#171717] mb-1.5" htmlFor="loginId">
+              Mobile Number / Client ID
             </label>
             <div className="relative">
-              <User size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <User size={16} className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 id="loginId"
                 type="text"
-                placeholder="Enter your ID or number"
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                placeholder="Enter your registered mobile number"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-black transition-all text-[#171717]"
                 value={id}
                 onChange={(e) => setId(e.target.value)}
               />
@@ -79,43 +78,43 @@ export default function Login() {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-[#1E1B2E] mb-2" htmlFor="password">
+            <label className="block text-xs font-bold text-[#171717] mb-1.5" htmlFor="password">
               Password
             </label>
             <div className="relative">
-              <Lock size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Lock size={16} className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-black transition-all text-[#171717]"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center justify-between text-xs pt-1">
             <label className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" className="rounded text-primary-600 focus:ring-primary-500 border-gray-300" />
+              <input type="checkbox" className="rounded text-[#F96400] focus:ring-[#F96400] border-gray-300" />
               <span className="text-gray-600 font-medium">Remember me</span>
             </label>
-            <a href="#" className="font-bold text-primary-600 hover:text-primary-700 transition-colors">Forgot Password?</a>
+            <a href="#" className="font-bold text-[#F96400] hover:underline">Forgot Password?</a>
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-bold transition-all disabled:opacity-70"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#F96400] hover:bg-[#E05A00] text-white rounded-xl font-bold text-sm transition-all shadow-md shadow-orange-500/20 disabled:opacity-70 mt-2"
           >
-            {isLoading ? 'Logging In...' : 'Log In'} <ArrowRight size={18} />
+            {isLoading ? 'Logging In...' : 'Log In to Account'} <ArrowRight size={16} />
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 font-medium mt-8 pt-6 border-t border-gray-100">
-          Don't have an account?{' '}
-          <Link to="/signup" className="text-primary-600 font-bold hover:text-primary-700 transition-colors">
-            Sign Up
+        <p className="text-center text-xs text-gray-600 font-medium mt-8 pt-6 border-t border-gray-100">
+          New to HY-Tech?{' '}
+          <Link to="/signup" className="text-[#F96400] font-bold hover:underline">
+            Register for Free
           </Link>
         </p>
       </div>

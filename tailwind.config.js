@@ -7,18 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          500: '#22c55e',
-          600: '#16a34a',
-          900: '#14532d',
+        brand: {
+          black: '#000000',
+          dark: '#111111',
+          orange: '#F96400',
+          'orange-hover': '#E05A00',
+          'orange-light': '#FFF5EE',
         },
-        secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          500: '#64748b',
-          900: '#0f172a',
+        surface: {
+          50: '#FAFAFA',
+          100: '#F5F5F5',
+          200: '#EAEAEA',
         }
       }
     },

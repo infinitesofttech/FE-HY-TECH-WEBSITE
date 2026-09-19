@@ -1,93 +1,93 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, FileText, Upload, Gift, GraduationCap } from 'lucide-react';
+import { FileText, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const steps = [
   {
-    num: '01.',
-    icon: Users,
-    title: 'Register Family',
-    desc: 'Create your Family ID and add all family members to a single shared account.',
-    iconBg: '#EDE7FB',
-  },
-  {
-    num: '02.',
+    num: '01',
     icon: FileText,
-    title: 'Choose Service',
-    desc: 'Browse our services — PAN, Aadhaar, Passport, Certificates and more.',
-    iconBg: '#E3F0FA',
+    title: 'Bring Documents or Send Online',
+    desc: 'Walk into our center at Rajmilan Complex, Dharampur, or share your document copies securely via WhatsApp.',
   },
   {
-    num: '03.',
-    icon: Upload,
-    title: 'Submit Documents',
-    desc: 'Upload required documents securely through our portal or visit the centre.',
-    iconBg: '#E1F5EC',
+    num: '02',
+    icon: ShieldCheck,
+    title: 'Verified Application Processing',
+    desc: 'Our staff accurately fills the official government or university forms, eliminating common spelling & demographic rejections.',
   },
   {
-    num: '04.',
-    icon: Gift,
-    title: 'Track & Earn Rewards',
-    desc: 'Track your service status in real time and earn reward points on every completed service.',
-    iconBg: '#FDEAD9',
+    num: '03',
+    icon: CheckCircle2,
+    title: 'Acknowledgment & Timely Delivery',
+    desc: 'Receive your official acknowledgment receipt, online tracking number, and instant PVC plastic card printing or document copy.',
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="w-full py-20" style={{ background: 'linear-gradient(135deg, #FDF1E4 0%, #F1E1F2 100%)' }}>
+    <section className="w-full py-20 bg-white border-y border-gray-100">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold mb-5"
-            style={{ background: '#FDEDE3', color: '#7C3AED' }}>
-            <GraduationCap size={14} className="mr-1 inline" /> OUR PROCESS
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 bg-[#FFF5EE] text-[#F96400]">
+            Simple & Transparent
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold" style={{ color: '#1E1B2E' }}>
-            Structured Process for<br />Faster Service.
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#000000] tracking-tight mb-3">
+            How Our Facilitation Works.
           </h2>
+          <p className="text-sm md:text-base text-gray-600">
+            Three simple steps to complete your government documents, scholarships, or certificates without confusion.
+          </p>
         </div>
 
-        {/* Steps */}
-        <div className="relative">
-          {/* Connecting line */}
-          <div className="absolute top-[22px] left-[calc(12.5%+20px)] right-[calc(12.5%+20px)] h-px hidden md:block"
-            style={{ background: '#D1C4E9' }} />
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {steps.map(({ num, icon: Icon, title, desc, iconBg }, i) => (
-              <div key={num} className="flex flex-col items-center">
-                {/* Number circle */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.12, type: 'spring' }}
-                  className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm text-white mb-6 relative z-10"
-                  style={{ background: '#7C3AED' }}
-                >
-                  {num}
-                </motion.div>
-
-                {/* Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.12 + 0.1 }}
-                  className="rounded-2xl p-6 bg-white w-full"
-                  style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}
-                >
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
-                    style={{ background: iconBg }}>
-                    <Icon size={20} style={{ color: '#7C3AED' }} />
+        {/* 3 Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.35 }}
+                className="relative flex flex-col p-8 rounded-2xl bg-[#FAFAFA] border border-gray-200"
+              >
+                {/* Step Number Badge */}
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-2xl font-black text-[#F96400]">
+                    {step.num}
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#000000]">
+                    <Icon size={20} />
                   </div>
-                  <h3 className="font-bold text-base mb-2" style={{ color: '#1E1B2E' }}>{title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>{desc}</p>
-                </motion.div>
-              </div>
-            ))}
-          </div>
+                </div>
+
+                <h3 className="text-lg font-bold text-[#000000] mb-2.5">
+                  {step.title}
+                </h3>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                  {step.desc}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Contact Note */}
+        <div className="mt-12 text-center">
+          <p className="text-xs text-gray-500 mb-3">
+            Have an urgent requirement or question regarding required documents?
+          </p>
+          <a
+            href="https://wa.me/917226030701?text=Hello%20HY-Tech,%20can%20you%20help%20me%20with%20documents?"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#F96400] hover:text-[#E05A00] transition-colors"
+          >
+            <span>Ask our team directly on WhatsApp</span>
+            <ArrowRight size={13} />
+          </a>
         </div>
       </div>
     </section>

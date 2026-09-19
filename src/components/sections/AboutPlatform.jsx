@@ -1,126 +1,113 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { GraduationCap, ArrowUpRight, Check, Users } from 'lucide-react';
+import { Check, ShieldCheck, MapPin, ArrowRight } from 'lucide-react';
 
 export default function AboutPlatform() {
-  const features = [
-    "Expert learning programs.",
-    "Relevant course content.",
-    "Flexible learning experience.",
-    "Lifetime access to courses."
+  const highlights = [
+    "Expertise in Gujarati & English demographic data entry.",
+    "Certified computer courses (CCC, MS Office, Tally Prime GST).",
+    "Instant PVC Smart Card printing (Aadhaar, PAN, Ayushman).",
+    "Special admission guidance for Shree Vanraj College students.",
+    "Strict citizen data privacy and secure digital record handling.",
+    "Transparent government fees and instant official receipts."
   ];
 
   return (
-    <section className="w-full bg-white py-20 overflow-hidden">
+    <section className="w-full bg-white py-20 border-b border-gray-100 overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-          
-          {/* Left Side: Image & Elements */}
-          <div className="relative w-full lg:w-1/2 flex justify-center">
-            {/* Background Pattern */}
-            <div className="absolute -bottom-8 -left-8 w-40 h-40 grid grid-cols-5 gap-2 opacity-30 z-0">
-              {Array.from({ length: 25 }).map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: '#7C3AED' }}></div>
-              ))}
-            </div>
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-            {/* Main Image */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
+          {/* Left Side: Visual Card Showcase */}
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative z-10 w-full max-w-lg rounded-[2rem] overflow-hidden"
-              style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.08)' }}
+              transition={{ duration: 0.45 }}
+              className="relative rounded-3xl bg-[#FAFAFA] border border-gray-200 p-8 lg:p-10 shadow-sm"
             >
-              <img 
-                src="/about_platform.jpg" 
-                alt="People collaborating on platform" 
-                className="w-full h-auto object-cover aspect-square md:aspect-[4/5]"
-              />
-            </motion.div>
+              {/* Top Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF5EE] text-[#F96400] text-xs font-bold mb-6">
+                <MapPin size={13} /> Established in Dharampur, Gujarat
+              </div>
 
-            {/* Floating Card */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="absolute top-12 -left-4 md:-left-12 z-20 bg-white rounded-2xl p-4 shadow-xl border border-gray-50 flex flex-col items-center max-w-[200px]"
-            >
-              <div className="flex -space-x-2 mb-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 border-2 border-white overflow-hidden"><img src="https://i.pravatar.cc/100?img=1" alt="User 1" /></div>
-                <div className="w-10 h-10 rounded-full bg-green-100 border-2 border-white overflow-hidden"><img src="https://i.pravatar.cc/100?img=2" alt="User 2" /></div>
-                <div className="w-10 h-10 rounded-full bg-orange-100 border-2 border-white overflow-hidden"><img src="https://i.pravatar.cc/100?img=3" alt="User 3" /></div>
-                <div className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white" style={{ background: '#7C3AED' }}>
-                  7K+
+              <h3 className="text-2xl lg:text-3xl font-extrabold text-[#000000] tracking-tight mb-4">
+                Bridging the Digital Divide for Dharampur & Surrounding Villages.
+              </h3>
+
+              <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                Government and educational schemes in India are increasingly online. For families and students who may not have high-speed internet, printers, or technical expertise, HY-Tech Online Hub provides patient, dependable, in-person assistance right in town.
+              </p>
+
+              {/* Local stats strip */}
+              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200 text-center">
+                <div className="p-3 bg-white rounded-xl border border-gray-100">
+                  <p className="text-xl font-black text-[#000000]">30+</p>
+                  <p className="text-[11px] text-gray-500 font-medium mt-0.5">Services Handled</p>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-gray-100">
+                  <p className="text-xl font-black text-[#F96400]">6 Days</p>
+                  <p className="text-[11px] text-gray-500 font-medium mt-0.5">Walk-in Support</p>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-gray-100">
+                  <p className="text-xl font-black text-[#000000]">100%</p>
+                  <p className="text-[11px] text-gray-500 font-medium mt-0.5">Genuine Filing</p>
                 </div>
               </div>
-              <p className="text-xs text-center text-gray-500 font-medium">
-                Join <span className="font-bold text-gray-900">180,000+</span> learners already on their path
-              </p>
             </motion.div>
           </div>
 
-          {/* Right Side: Content */}
+          {/* Right Side: Narrative & Highlights */}
           <div className="w-full lg:w-1/2">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
-              <span
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase mb-6"
-                style={{ background: '#F3E8FF', color: '#7C3AED' }}
-              >
-                <GraduationCap size={14} className="mr-1 inline" /> ABOUT OUR PLATFORM
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-[#FFF5EE] text-[#F96400]">
+                <ShieldCheck size={13} /> Your Trusted Local Partner
               </span>
 
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-[#1E1B2E]">
-                Transforming knowledge into career opportunities through <span style={{ color: '#7C3AED' }}>HY-Tech</span>.
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#000000] tracking-tight mb-5 leading-tight">
+                Accurate Document Services & Practical Computer Training.
               </h2>
-              
-              <p className="text-base md:text-lg text-gray-500 mb-8 max-w-xl leading-relaxed">
-                Master modern digital and tech skills through AI-powered learning paths and structured programs designed for 2026 and beyond. Get the tools you need to succeed.
+
+              <p className="text-sm md:text-base text-gray-600 mb-8 leading-relaxed">
+                Whether you need to update an Aadhaar mobile link, apply for a new PAN card, register on the GCAS portal for college admission, or enroll in a CCC certification course, our staff ensures your application is handled with precision and care.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-                {features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div className="mt-0.5 rounded-full p-0.5 bg-green-100 text-green-600 flex-shrink-0">
-                      <Check size={14} strokeWidth={3} />
+              {/* Checklist */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+                {highlights.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5">
+                    <div className="mt-1 w-4 h-4 rounded-full bg-[#FFF5EE] text-[#F96400] flex items-center justify-center flex-shrink-0">
+                      <Check size={11} strokeWidth={3} />
                     </div>
-                    <span className="text-gray-700 font-medium text-sm md:text-base">{feature}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-700 leading-snug">{item}</span>
                   </div>
                 ))}
               </div>
 
+              {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   to="/services"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all shadow-lg shadow-purple-500/20"
-                  style={{ background: '#7C3AED' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#6D28D9'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#7C3AED'}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-[#F96400] hover:bg-[#E05A00] text-white transition-all shadow-sm"
                 >
-                  Start learning free <ArrowUpRight size={18} />
+                  Explore All Services <ArrowRight size={15} />
                 </Link>
-                
                 <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-all border-2"
-                  style={{ color: '#1E1B2E', borderColor: '#F3F4F6' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#E5E7EB'; e.currentTarget.style.background = '#F9FAFB'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#F3F4F6'; e.currentTarget.style.background = 'transparent'; }}
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-white hover:bg-gray-50 text-[#171717] border border-gray-200 transition-colors"
                 >
-                  Explore courses <ArrowUpRight size={18} />
+                  Visit Our Center in Dharampur
                 </Link>
               </div>
             </motion.div>
           </div>
-          
+
         </div>
       </div>
     </section>

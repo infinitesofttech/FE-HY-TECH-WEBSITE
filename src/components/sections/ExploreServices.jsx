@@ -1,131 +1,107 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Heart, Clock, Gift, Users, FileText, Star, GraduationCap } from 'lucide-react';
-import { services } from '../../data/services';
-
-const tabs = ['All', 'Identity', 'Travel', 'Certificates', 'Family'];
+import { Clock, FileCheck, MessageCircle, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { featuredServices } from '../../data/services';
 
 export default function ExploreServices() {
-  const [active, setActive] = useState('All');
-
   return (
-    <section className="w-full py-20" style={{ background: 'linear-gradient(135deg, #FDF1E4 0%, #F1E1F2 100%)' }}>
+    <section className="w-full py-20 bg-[#FAFAFA]">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold mb-5"
-            style={{ background: '#FDEDE3', color: '#7C3AED' }}>
-            <GraduationCap size={14} className="mr-1 inline" /> TOP SERVICES
+
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 bg-[#FFF5EE] text-[#F96400]">
+            <Sparkles size={13} /> Daily Citizen Highlights
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4" style={{ color: '#1E1B2E' }}>
-            Explore Services Built<br />For Your Family.
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#000000] tracking-tight mb-3">
+            Most In-Demand Facilitation Services.
           </h2>
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mt-8">
-            {tabs.map((t) => (
-              <button
-                key={t}
-                onClick={() => setActive(t)}
-                className="px-5 py-2 rounded-full text-sm font-semibold transition-all"
-                style={{
-                  background: active === t ? '#7C3AED' : '#fff',
-                  color: active === t ? '#fff' : '#1E1B2E',
-                  border: active === t ? 'none' : '1px solid #E5E7EB',
-                }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
+          <p className="text-sm md:text-base text-gray-600">
+            We handle the official paperwork and online queues so you don't have to face rejected applications or repeated office visits.
+          </p>
         </div>
 
-        {/* Cards */}
+        {/* 3 Featured Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((svc, i) => (
+          {featuredServices.map((svc, i) => (
             <motion.div
               key={svc.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.3 }}
-              className="group rounded-3xl overflow-hidden bg-white border border-gray-100/80 hover:-translate-y-2 transition-all duration-500"
-              style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}
-              onMouseEnter={e => e.currentTarget.style.boxShadow = '0 24px 50px rgba(124,58,237,0.1)'}
-              onMouseLeave={e => e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.04)'}
+              transition={{ delay: i * 0.1, duration: 0.35 }}
+              className="bg-white rounded-2xl p-7 border border-gray-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
             >
-              {/* Thumbnail */}
-              <div className="relative h-56 m-3 rounded-2xl overflow-hidden flex items-center justify-center" style={{ background: svc.bg }}>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none z-10"></div>
-                <img src={svc.image} alt={svc.title} className="w-full h-full object-cover mix-blend-multiply opacity-80 relative z-0 transition-transform duration-700 group-hover:scale-110" />
-                <span
-                  className="absolute top-3 left-3 text-xs font-bold text-white px-2.5 py-1 rounded-full"
-                  style={{ background: svc.badgeColor }}
-                >
-                  {svc.badge}
-                </span>
-                <button className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center"
-                  style={{ background: 'rgba(255,255,255,0.2)' }}>
-                  <Heart size={14} color="#fff" />
-                </button>
+              <div>
+                {/* Header Tag */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[11px] font-bold text-[#F96400] uppercase tracking-wider bg-[#FFF5EE] px-2.5 py-1 rounded-full">
+                    {svc.category}
+                  </span>
+                  <span className="text-xs font-semibold text-gray-500 flex items-center gap-1">
+                    <Clock size={12} className="text-[#F96400]" /> {svc.time}
+                  </span>
+                </div>
+
+                <h3 className="font-extrabold text-xl text-[#000000] leading-snug mb-3">
+                  {svc.title}
+                </h3>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed mb-5">
+                  {svc.desc}
+                </p>
+
+                {/* Required Documents Box */}
+                <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-100 mb-6">
+                  <p className="text-[11px] font-bold text-[#171717] flex items-center gap-1.5 mb-1">
+                    <FileCheck size={13} className="text-[#F96400]" /> Required Documents:
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    {svc.docsNeeded}
+                  </p>
+                </div>
               </div>
 
-              {/* Body */}
-              <div className="p-6 pt-4">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold" style={{ color: '#7C3AED' }}>{svc.category}</span>
-                  <span className="text-xs" style={{ color: '#9CA3AF' }}>{svc.level}</span>
-                </div>
-                <h3 className="font-bold text-base leading-snug mb-3" style={{ color: '#1E1B2E' }}>{svc.title}</h3>
-
-                {/* Staff */}
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs text-white font-bold"
-                    style={{ background: '#7C3AED' }}>
-                    {svc.staff[0]}
-                  </div>
-                  <span className="text-xs" style={{ color: '#9CA3AF' }}>{svc.staff}</span>
-                </div>
-
-                {/* Meta */}
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="flex items-center gap-1 text-xs" style={{ color: '#9CA3AF' }}>
-                    <FileText size={11} /> {svc.steps} Steps
-                  </span>
-                  <span className="flex items-center gap-1 text-xs" style={{ color: '#9CA3AF' }}>
-                    <Clock size={11} /> {svc.days}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs" style={{ color: '#9CA3AF' }}>
-                    <Users size={11} /> {svc.families}
-                  </span>
-                </div>
-
-                {/* Rating + Price */}
-                <div className="flex items-center justify-between mb-5 pt-3 border-t" style={{ borderColor: '#F3F4F6' }}>
-                  <span className="flex items-center gap-1 text-sm font-bold" style={{ color: '#1E1B2E' }}>
-                    <Star size={13} fill="#FACC15" stroke="none" />
-                    {svc.rating}
-                    <span className="font-normal text-xs ml-1" style={{ color: '#9CA3AF' }}>({svc.reviews})</span>
-                  </span>
-                  <span className="text-sm">
-                    <span className="line-through mr-1 text-xs" style={{ color: '#9CA3AF' }}>{svc.oldPrice}</span>
-                    <span className="font-bold" style={{ color: '#1E1B2E' }}>{svc.price}</span>
-                    <span className="ml-2 text-xs font-semibold" style={{ color: '#7C3AED' }}>{svc.points}</span>
-                  </span>
-                </div>
-
-                {/* CTA */}
-                <button
-                  className="w-full py-3 rounded-xl font-semibold text-sm text-white flex items-center justify-center gap-2 transition-all duration-300 group-hover:scale-[1.03]"
-                  style={{ background: '#7C3AED', boxShadow: '0 4px 14px rgba(124,58,237,0.25)' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#6D28D9'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#7C3AED'}
+              {/* Action Buttons */}
+              <div className="pt-4 border-t border-gray-100 flex flex-col gap-2">
+                <a
+                  href={`https://wa.me/917226030701?text=${encodeURIComponent(svc.whatsappText)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 bg-[#F96400] hover:bg-[#E05A00] text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
                 >
-                  Book Service <ArrowRight size={16} />
-                </button>
+                  <MessageCircle size={14} /> Inquire / Apply via WhatsApp
+                </a>
+                <Link
+                  to="/services"
+                  className="w-full py-2 bg-transparent hover:bg-gray-50 text-gray-700 text-xs font-semibold rounded-xl text-center transition-colors border border-gray-200"
+                >
+                  View Requirements & Checklist
+                </Link>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Center Support Callout */}
+        <div className="mt-12 p-6 rounded-2xl bg-white border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-center sm:text-left">
+            <div className="w-10 h-10 rounded-full bg-[#FFF5EE] text-[#F96400] flex items-center justify-center flex-shrink-0">
+              <FileCheck size={20} />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-[#171717]">Need assistance with a different government or educational document?</p>
+              <p className="text-xs text-gray-500">We assist with over 30+ services at our Dharampur branch or remotely via WhatsApp.</p>
+            </div>
+          </div>
+          <Link
+            to="/services"
+            className="px-5 py-2.5 rounded-full bg-black hover:bg-[#F96400] text-white text-xs font-bold transition-colors flex-shrink-0"
+          >
+            Explore Complete Directory
+          </Link>
+        </div>
+
       </div>
     </section>
   );
